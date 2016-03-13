@@ -1,0 +1,74 @@
+<!--
+	Developed by: Danilo Pinotti
+	Widget very useful for moderators and administrators of Forumotion forums PhpBB3.
+-->
+<script>
+jQuery(function() {
+    function is_trash() {
+        return (jQuery('.pathname-box a:contains("Lixeira")').length >= 1);
+    }
+
+    function is_locked() {
+        return (jQuery('img[alt*="bloqueado"]').length >= 1);
+    }
+
+    function is_topic() {
+        var link = location.pathname
+        var reducted_link = link.substr(0, link.indexOf('-') + 1);
+        return (reducted_link.indexOf('t') == 1);
+    }
+
+    function update_pathname(destination_topic_id, done){
+        jQuery.get('/t'+destination_topic_id+'-', function(data){
+            jQuery('.pathname-box').html(jQuery('.pathname-box', data).html());
+            done();
+        });
+    }
+
+    function move_topic(tid, f, t, area, success){
+        jQuery.post( "/modcp?tid="+tid, { 
+            new_forum: area,
+            tid: tid, 
+            mode: "move",
+            f: f,
+            t: t,
+            confirm: "Mover!"
+        } ).done(function() { success() });
+    }
+
+    var topic_id = jQuery('input[name="t"]').attr('value');
+    var tid = jQuery('input[name="tid"]').attr('value');
+    var f;
+
+    if (is_topic()){
+        var options = [];
+        if (!is_trash()){
+            options.push('<a href="/modcp?mode='+(is_locked() ? 'unlock' : 'lock' )+'&t=' + topic_id + '&tid=' + tid + '" target="_black" id="lock-unlock">'+(is_locked() ? 'Desbloquear' : 'Bloquear' )+' tópico<br></a>');
+            options.push('<a href="/modcp?mode=trash&t=' + topic_id + '&tid=' + tid + '" target="_black" id="to-trash">Mover tópico para lixeira<br></a>');
+        }
+        options.push('<a id="move-topic" style="cursor: pointer;">Mover Tópico</a>');
+
+        jQuery('.tools-topic').html('<hr>'+ options.join(''));
+    }
+
+    jQuery('#move-topic').click(function(){
+        jQuery(this).html("Carregando...");
+        jQuery.get('/modcp?mode=move&t='+topic_id+'&tid='+tid,function(data){
+            jQuery('#move-topic').fadeOut(100);
+            f = jQuery('input[name="f"]', data).attr('value');
+            jQuery('.tools-topic').append('<center><br>Escolha uma área para mover o tópico:<form id="topic-move-form"><select name="new_forum" id="retrieved-areas"></select></form><button class="button2" id="move-confirm">Mover</button></center>').slideDown(1000);
+            jQuery('select[id="retrieved-areas"]').html(jQuery('select',data).html());
+            jQuery('#move-confirm').click(function(){
+                jQuery(this).html('Movendo...');
+                move_topic(tid, f, topic_id, jQuery("#retrieved-areas option:selected").val(), function(){ update_pathname(topic_id, function(){ jQuery('#move-confirm').html('Mover'); alert('Tópico movido !')})});
+            }); 
+        });
+    });   
+});
+</script><style>
+    #topic-move-form * {max-width: 160px;}
+    #move-confirm {font-size: 11px; padding: 4px 10px; cursor: pointer;}
+</style><a href="http://www.monsterhunterbrasil.com/h5-" id="pmoderadorbutton">Painel do Moderador</a><br /><a href="http://www.monsterhunterbrasil.com/f44-">Área da Staff</a><br /><a href="http://www.monsterhunterbrasil.com/t5332-">Títulos</a>
+<div class="tools-topic">
+</div>
+ 

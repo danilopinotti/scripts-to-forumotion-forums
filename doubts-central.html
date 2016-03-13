@@ -1,0 +1,145 @@
+<!-- 
+	Developed by Danilo Pinotti - 2014
+	Você deseja utilizar o início e o final da página do seu fórum ?: Sim
+-->
+<head>
+	<script type="text/javascript">
+		var id = new Array();
+		var monsterhunter = new Array();
+		var taverna = new Array();
+		var arsenal = new Array();
+		var mercado = new Array();
+		var cacada = new Array();
+		var praca = new Array();
+		var patch = new Array();
+		  
+		 //Monster Hunters
+		  
+		  //Monster Hunter 1
+		monsterhunter[0] = 'Monster Hunter 1';
+		taverna[0] = '120';
+		arsenal[0] = '16';
+		mercado[0] = '3';
+		cacada[0] = '4';
+		praca[0] = '23';
+		  
+		  //Monster Hunter G
+		monsterhunter[1] = 'Monster Hunter G';
+		taverna[1] = '1';
+		arsenal[1] = '7';
+		mercado[1] = '121';
+		cacada[1] = '24';
+		praca[1] = '122';
+		  
+		  //Monster Hunter 2
+		monsterhunter[2] = 'Monster Hunter 2';
+		taverna[2] = '88';
+		arsenal[2] = '87';
+		mercado[2] = '90';
+		cacada[2] = '89';
+		praca[2] = '123';
+		patch[2] = '2';
+
+		  //Monster Hunter Frontier
+		monsterhunter[3] = 'Monster Hunter Frontier';
+		taverna[3] = '5';
+		arsenal[3] = '6';
+		mercado[3] = '20';
+		cacada[3] = '8';
+		praca[3] = '25';
+
+		  //Monster Hunter Freedom Unite/2G
+		monsterhunter[4] = 'Monster Hunter Freedom Unite/2G';
+		taverna[4] = '13';
+		arsenal[4] = '14';
+		mercado[4] = '15';
+		cacada[4] = '26';
+		praca[4] = '27';  
+
+		  //Monster Hunter Trii
+		monsterhunter[5] = 'Monster Hunter Trii';
+		taverna[5] = '28';
+		arsenal[5] = '29';
+		mercado[5] = '30';
+		cacada[5] = '31';
+		praca[5] = '58'; 
+		  
+		  //Monster Hunter 3rd
+		monsterhunter[6] = 'Monster Hunter 3rd';
+		taverna[6] = '59';
+		arsenal[6] = '60';
+		mercado[6] = '61';
+		cacada[6] = '101';
+		praca[6] = '108';
+		  
+		  //Monster Hunter 3g
+		monsterhunter[7] = 'Monster Hunter 3G';
+		taverna[7] = '9';
+		arsenal[7] = '10';
+		mercado[7] = '11';
+		cacada[7] = '12';
+		praca[7] = '32';
+		  
+		  //Monster Hunter 4
+		monsterhunter[8] = 'Monster Hunter 4';
+		taverna[8] = '17';
+		arsenal[8] = '33';
+		mercado[8] = '34';
+		cacada[8] = '35';
+		praca[8] = '73';
+
+		//Monster Hunter 4g/4u
+		monsterhunter[9] = 'Monster Hunter 4G / 4U';
+		taverna[9] = '49';
+		arsenal[9] = '50';
+		mercado[9] = '67';
+		cacada[9] = '69';
+		praca[9] = '70';
+
+		//Monster Hunter Online
+		monsterhunter[10] = 'Monster Hunter Online';
+		taverna[10] = '95';
+		arsenal[10] = '96';
+		mercado[10] = '97';
+		cacada[10] = '102';
+		praca[10] = '127';
+		  
+		  //Fim dos Monster Hunter
+		function ocultarareas() {
+			$('#areas').hide();
+			$('#botoes').fadeIn(400);
+		}
+		  
+		function ocultarbotoes(){
+		  	$('#areas').fadeIn(400);
+			$('#botoes').hide();
+		}
+		for (var idnum = 0; idnum < monsterhunter.length;idnum++){id[idnum] = idnum;}
+		function aparecertela(id) {
+			if (patch[id]) {
+				$('#areas').html('<div onclick="ocultarareas()" id="seta" class="formseta">←</div><div id="div' + id + '" class="formareas"><a class="titulomh">' + monsterhunter[id] + '</a><br />Escolha abaixo qual categoria sua dúvida se enquadra melhor:<br /> <a href="/post?f=' + arsenal[id] + '&mode=newtopic">&nbsp;Dúvida referente a armas ou armaduras</a><br /><a href="/post?f=' + mercado[id] + '&mode=newtopic">&nbsp;Dúvida referente a ítens</a><br /><a href="/post?f=' + cacada[id] + '&mode=newtopic">&nbsp;Dúvida referente a monstros e missões</a><br /><a href="/post?f=' + patch[id] + '&mode=newtopic">&nbsp;Dúvida referente a patchs</a></br>Não é uma dúvida ?<br /><a href="/post?f=' + taverna[id] + '&mode=newtopic">&nbsp;Poste na Taverna caso seja alguma dica.</a><br /> <a href="/post?f=' + praca[id] + '&mode=newtopic">&nbsp;Poste em OFF caso não se enquadra em nada acima..</a><br /></div>')
+			} else {
+				$('#areas').html('<div onclick="ocultarareas()" id="seta" class="formseta">←</div><div id="div' + id + '" class="formareas"><a class="titulomh">' + monsterhunter[id] + '</a><br />Escolha abaixo qual categoria sua dúvida se enquadra melhor:<br /> <a href="/post?f=' + arsenal[id] + '&mode=newtopic">&nbsp;Dúvida referente a armas ou armaduras</a><br /><a href="/post?f=' + mercado[id] + '&mode=newtopic">&nbsp;Dúvida referente a ítens</a><br /><a href="/post?f=' + cacada[id] + '&mode=newtopic">&nbsp;Dúvida referente a monstros e missões</a><br />Não é uma dúvida ?<br /><a href="/post?f=' + taverna[id] + '&mode=newtopic">&nbsp;Poste na Taverna caso seja alguma dica.</a><br /> <a href="/post?f=' + praca[id] + '&mode=newtopic">&nbsp;Poste em OFF caso não se enquadra em nada acima..</a><br /></div>')
+			}
+			ocultarbotoes();
+		}
+		$(function () {
+			ocultarareas();
+			for (var i = 0; i < monsterhunter.length; i++) {
+				$('#botoes').append(' <div onclick="aparecertela(' + i + ')" id="btn' + id[i] + '" class="formduvidas">&nbsp;' + monsterhunter[i] + '</div>');
+			}
+		});
+	</script> 
+	<style>.geral #botoes, .geral #areas {background-color: #faede1;border: 1px solid rgb(192, 178, 165);border-radius: 4px;padding: 18px 18px 18px 20px;width: 825px;}
+	.geral {font-size: 15px;}
+	.titulomh {top: -24px;position: relative;text-align: center !important;margin-left: 323px;font-size: 17px;text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.19);}
+	#seta {cursor: pointer; font-size: 25px;/*text-shadow: 2px 1px 10px black*/;border: 1px solid;width: 27px;height: 13px;padding: 0px 5px 25px 6px;border-radius: 7px;}
+	.formduvidas .formduvidas {cursor: pointer;}
+	</style>
+</head>
+<body>
+	<div class="geral">
+	<div id="botoes" class="formduvidas">Escolha abaixo a qual Monster Hunter sua dúvida se refere:</div>
+	<div id="areas" style="position:absolute;"></div>
+	</div>
+</body>
